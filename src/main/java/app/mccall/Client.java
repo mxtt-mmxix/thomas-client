@@ -12,7 +12,7 @@ public class Client {
         for (float opacity = 0; opacity < 1; opacity += 0.01)
             window.setOpacity(opacity);
         try {
-            Thread.sleep(500);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -22,7 +22,7 @@ public class Client {
         for (float opacity = 1; opacity > 0; opacity -= 0.01)
             window.setOpacity(opacity);
         try {
-            Thread.sleep(500);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -38,12 +38,6 @@ public class Client {
 
         thomas = new Thomas();
         thomas.initDB();
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         window = new ClientWindow();
 
