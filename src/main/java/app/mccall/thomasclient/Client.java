@@ -1,10 +1,16 @@
-package app.mccall;
+package app.mccall.thomasclient;
 
 import javax.swing.JFrame;
 
+import app.mccall.thomas.ThomasCore;
+import app.mccall.thomas.ThomasDB;
+import app.mccall.thomas.ThomasParser;
+
 public class Client {
 
-    private Thomas thomas;
+    private ThomasCore thomas;
+    private ThomasDB thomasDB;
+    private ThomasParser thomasParser;
     private SplashScreen splashScreen;
     private ClientWindow window;
 
@@ -36,8 +42,9 @@ public class Client {
 
         fadeWindowIn(splashScreen);
 
-        thomas = new Thomas();
-        thomas.initDB();
+        thomasDB = new ThomasDB();
+        thomasParser = new ThomasParser("/bin/en-max");
+        thomas = new ThomasCore(thomasDB, thomasParser);
 
         window = new ClientWindow();
 

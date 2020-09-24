@@ -1,4 +1,4 @@
-package app.mccall;
+package app.mccall.thomasclient;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;

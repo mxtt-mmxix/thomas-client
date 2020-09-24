@@ -1,4 +1,4 @@
-package app.mccall;
+package app.mccall.thomasclient;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -83,9 +83,11 @@ public class ClientWindow extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        inputField.setEnabled(false);
-        sendMessage("USER", inputField.getText());
-        inputField.setText("");
-        inputField.setEnabled(true);
+        if (e.getSource() == inputField) {
+            inputField.setEnabled(false);
+            sendMessage("USER", inputField.getText());
+            inputField.setText("");
+            inputField.setEnabled(true);
+        }
     }
 }
