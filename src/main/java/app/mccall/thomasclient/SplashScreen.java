@@ -11,6 +11,26 @@ public class SplashScreen extends JFrame {
     private ImageIcon splashImage;
     private JLabel splashLabel;
 
+    public void fadeIn() {
+        for (float opacity = 0; opacity < 1; opacity += 0.01)
+            setOpacity(opacity);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void fadeOut() {
+        for (float opacity = 1; opacity > 0; opacity -= 0.01)
+            setOpacity(opacity);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public SplashScreen() {
 
         splashImage = new ImageIcon("./splash.jpg");
