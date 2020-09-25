@@ -28,6 +28,7 @@ public class ClientWindow extends JFrame implements ActionListener {
     private JCheckBox ttsBox;
     private JPanel chatPanel;
     private boolean isListening;
+    private Callback callback = null;
 
     public ClientWindow() {
 
@@ -78,8 +79,12 @@ public class ClientWindow extends JFrame implements ActionListener {
 
     }
 
-    private void sendMessage(String sender, String messsage) {
+    public void sendMessage(final String sender, final String messsage) {
         chatArea.append(String.format("<%s> %s\n\n", sender, messsage));
+    }
+
+    public void addCallback(final Callback callback) {
+        this.callback = callback;
     }
 
     @Override
@@ -87,6 +92,7 @@ public class ClientWindow extends JFrame implements ActionListener {
         if (e.getSource() == inputField) {
             inputField.setEnabled(false);
             sendMessage("USER", inputField.getText());
+            callback.call(inputField.getText());
             inputField.setText("");
             inputField.setEnabled(true);
         } else if (e.getSource() == speakButton) {
