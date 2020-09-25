@@ -43,7 +43,7 @@ public class Client {
         fadeWindowIn(splashScreen);
 
         thomasDB = new ThomasDB();
-        thomasParser = new ThomasParser("/bin/en-max");
+        thomasParser = new ThomasParser("models/en-parser-chunking.bin");
         thomas = new ThomasCore(thomasDB, thomasParser);
 
         window = new ClientWindow();
