@@ -1,7 +1,5 @@
 package app.mccall.thomasclient;
 
-import javax.swing.JFrame;
-
 import app.mccall.thomas.ThomasCore;
 import app.mccall.thomas.ThomasDB;
 import app.mccall.thomas.ThomasParser;
@@ -14,33 +12,14 @@ public class Client {
     private SplashScreen splashScreen;
     private ClientWindow window;
 
-    private void fadeWindowIn(JFrame window) {
-        for (float opacity = 0; opacity < 1; opacity += 0.01)
-            window.setOpacity(opacity);
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void fadeWindowOut(JFrame window) {
-        for (float opacity = 1; opacity > 0; opacity -= 0.01)
-            window.setOpacity(opacity);
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     public Client() {
 
         splashScreen = new SplashScreen();
         splashScreen.setOpacity(0);
         splashScreen.setVisible(true);
 
-        fadeWindowIn(splashScreen);
+        splashScreen.fadeIn();
+        ;
 
         thomasDB = new ThomasDB();
         thomasParser = new ThomasParser("models/en-parser-chunking.bin");
@@ -48,7 +27,15 @@ public class Client {
 
         window = new ClientWindow();
 
-        fadeWindowOut(splashScreen);
+        window.addCallback(new Callback() {
+            @Override
+            public void call(String arg) {
+                window.sendMessage("THOMAS", "Check console");
+                thomas.send(arg);
+            }
+        });
+
+        splashScreen.fadeOut();
         window.setVisible(true);
 
         splashScreen.dispose();
