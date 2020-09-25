@@ -27,6 +27,7 @@ public class ClientWindow extends JFrame implements ActionListener {
     private JButton speakButton;
     private JCheckBox ttsBox;
     private JPanel chatPanel;
+    private boolean isListening;
 
     public ClientWindow() {
 
@@ -88,6 +89,13 @@ public class ClientWindow extends JFrame implements ActionListener {
             sendMessage("USER", inputField.getText());
             inputField.setText("");
             inputField.setEnabled(true);
+        } else if (e.getSource() == speakButton) {
+            if (!isListening) {
+                speakButton.setText("Stop Listening");
+            } else {
+                isListening = false;
+                speakButton.setText("Start Listening");
+            }
         }
     }
 }
